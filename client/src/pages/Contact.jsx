@@ -3,24 +3,44 @@ import { useState } from "react";
 import "./Contact.css";
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    message: ""
+  });
+
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const submit = async (e) => {
     e.preventDefault();
 
     try {
-      await fetch("http://localhost:5000/contact", {
+      setLoading(true);
+
+      const API = import.meta.env.VITE_API_URL;
+
+      const res = await fetch(`${API}/contact`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(form)
       });
+
+      if (!res.ok) {
+        throw new Error("Failed to send message");
+      }
 
       setSubmitted(true);
       setForm({ name: "", email: "", message: "" });
+
       setTimeout(() => setSubmitted(false), 3000);
     } catch (err) {
-      console.error(err);
+      console.error("Error:", err);
+      alert("Message failed to send. Try again!");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -39,46 +59,61 @@ export default function Contact() {
         </p>
 
         <form onSubmit={submit} className="contact-form">
+          {/* NAME */}
           <div className="form-group">
             <input
               type="text"
               placeholder="Your Name"
               required
               value={form.name}
-              onChange={(e) => setForm({ ...form, name: e.target.value })}
+              onChange={(e) =>
+                setForm({ ...form, name: e.target.value })
+              }
               className="form-input"
             />
           </div>
 
+          {/* EMAIL */}
           <div className="form-group">
             <input
               type="email"
               placeholder="Your Email"
               required
               value={form.email}
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
+              onChange={(e) =>
+                setForm({ ...form, email: e.target.value })
+              }
               className="form-input"
             />
           </div>
 
+          {/* MESSAGE */}
           <div className="form-group">
             <textarea
               placeholder="Your Message"
               required
-              value={form.message}
-              onChange={(e) => setForm({ ...form, message: e.target.value })}
               rows={6}
+              value={form.message}
+              onChange={(e) =>
+                setForm({ ...form, message: e.target.value })
+              }
               className="form-textarea"
-            ></textarea>
+            />
           </div>
 
+          {/* BUTTON */}
           <motion.button
             type="submit"
             className="btn-send"
+            disabled={loading}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            {submitted ? "✓ Sent!" : "Send Message"}
+            {loading
+              ? "Sending..."
+              : submitted
+              ? "✓ Sent!"
+              : "Send Message"}
           </motion.button>
         </form>
       </div>
