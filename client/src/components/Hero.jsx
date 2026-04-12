@@ -3,10 +3,6 @@ import "./Hero.css";
 import aayushiPic from "../assets/aayushi_pic.png";
 
 export default function Hero({ onStart }) {
-
-  // ✅ FIX: backend URL from environment
-  const API = import.meta.env.VITE_API_URL;
-
   return (
     <section className="hero-section">
       <div className="hero-container">
@@ -49,9 +45,9 @@ export default function Hero({ onStart }) {
               Let’s get started →
             </button>
 
-            {/* VIEW RESUME */}
+            {/*  VIEW RESUME */}
             <a
-              href={`${API}/resume/resume.pdf`}
+              href="/resume.pdf"
               target="_blank"
               rel="noreferrer"
               className="btn-secondary"
@@ -61,9 +57,8 @@ export default function Hero({ onStart }) {
 
             {/* DOWNLOAD RESUME */}
             <a
-              href={`${API}/resume/resume.pdf`}
-              target="_blank"
-              rel="noreferrer"
+              href="/resume.pdf"
+              download="Aayushi_Resume.pdf"
               className="btn-secondary"
             >
               Download Resume

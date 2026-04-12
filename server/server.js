@@ -3,7 +3,6 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import path from "path";
-import fs from "fs";
 import { fileURLToPath } from "url";
 
 import contactRoutes from "./routes/contactRoutes.js";
@@ -28,28 +27,6 @@ mongoose
 
 // ---------------- CONTACT ROUTES ----------------
 app.use("/contact", contactRoutes);
-
-
-const resumePath = path.join(__dirname, "public", "resume.pdf");
-
-// 🔍 VIEW RESUME
-app.get("/resume/view", (req, res) => {
-  if (!fs.existsSync(resumePath)) {
-    return res.status(404).send("Resume not found");
-  }
-
-  res.setHeader("Content-Type", "application/pdf");
-  res.sendFile(resumePath);
-});
-
-// 📥 DOWNLOAD RESUME
-app.get("/resume/download", (req, res) => {
-  if (!fs.existsSync(resumePath)) {
-    return res.status(404).send("Resume not found");
-  }
-
-  res.download(resumePath, "Aayushi_Resume.pdf");
-});
 
 // ---------------- ROOT ROUTE ----------------
 app.get("/", (req, res) => {
