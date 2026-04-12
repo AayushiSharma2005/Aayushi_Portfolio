@@ -1,8 +1,11 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import "./Hero.css";
 import aayushiPic from "../assets/aayushi_pic.png";
 
 export default function Hero({ onStart }) {
+  const [showModal, setShowModal] = useState(false);
+
   return (
     <section className="hero-section">
       <div className="hero-container">
@@ -16,13 +19,15 @@ export default function Hero({ onStart }) {
         >
           <h1 className="hero-name">Aayushi Sharma</h1>
 
-          <p className="hero-typewriter">
-            B.Tech Undergrad • Tech Explorer
-          </p>
+          <p className="hero-typewriter">B.Tech Undergrad • Tech Explorer</p>
 
           <p className="hero-tagline">
-            Engineering student focused on building logical and structured solutions through code.
-            Exploring ideas through projects and continuous learning.
+            I am an Engineering Student exploring
+            <span> Machine Learning</span>, 
+            <span> Deep Learning</span>, and 
+            <span> Computer Vision</span>.
+            <br /> Currently working on 
+            <span> Quantum Image Processing</span>.
           </p>
 
           {/* SOCIAL ICONS */}
@@ -45,7 +50,7 @@ export default function Hero({ onStart }) {
               Let’s get started →
             </button>
 
-            {/*  VIEW RESUME */}
+            {/* VIEW RESUME */}
             <a
               href="/resume.pdf"
               target="_blank"
@@ -55,14 +60,10 @@ export default function Hero({ onStart }) {
               View Resume
             </a>
 
-            {/* DOWNLOAD RESUME */}
-            <a
-              href="/resume.pdf"
-              download="Aayushi_Resume.pdf"
-              className="btn-secondary"
-            >
+            {/* DOWNLOAD RESUME POPUP */}
+            <button className="btn-secondary" onClick={() => setShowModal(true)}>
               Download Resume
-            </a>
+            </button>
 
           </div>
         </motion.div>
@@ -76,8 +77,31 @@ export default function Hero({ onStart }) {
         >
           <img src={aayushiPic} alt="Aayushi" className="hero-photo" />
         </motion.div>
-
       </div>
+
+      {/* MODAL */}
+      {showModal && (
+        <div className="resume-modal">
+          <div className="modal-box">
+            <h3>Select Format</h3>
+
+            <div className="modal-buttons">
+              <a className="modal-btn" href="/resume.pdf" download>
+                PDF
+              </a>
+
+              <a className="modal-btn" href="/resume.docx" download>
+                DOCX
+              </a>
+            </div>
+
+            <button className="close-btn" onClick={() => setShowModal(false)}>
+              ✕
+            </button>
+          </div>
+        </div>
+      )}
+
     </section>
   );
 }
