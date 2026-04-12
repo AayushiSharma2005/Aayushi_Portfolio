@@ -1,0 +1,128 @@
+.nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 22px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(12px);
+  z-index: 100;
+  border-bottom: 1px solid var(--border);
+  box-sizing: border-box; /*  Prevents overflow */
+}
+
+.logo {
+  color: var(--cyan);
+  font-size: 30px;
+  font-weight: 700;
+  flex-shrink: 0; /* Prevent logo from shrinking */
+}
+
+/* NAV LINKS */
+.nav-links {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  justify-content: center;
+  margin: 0 2rem;
+}
+
+.nav-links a {
+  margin: 0 18px;
+  text-decoration: none;
+  color: var(--text);
+  position: relative;
+  transition: 0.3s;
+  white-space: nowrap; /*  Prevent text wrapping */
+}
+
+/* Hover */
+.nav-links a:hover {
+  color: var(--cyan);
+}
+
+/* ACTIVE LINK */
+.nav-links a.active {
+  color: var(--cyan);
+}
+
+/* Underline animation */
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0%;
+  height: 2px;
+  background: var(--cyan);
+  transition: 0.3s;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+
+/* CONTACT BUTTON */
+.contact-btn {
+  background: white;
+  color: black;
+  padding: 10px 22px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap; /* Prevent button text from wrapping */
+  flex-shrink: 0; /* Prevent button from shrinking */
+  min-width: fit-content; /* Ensure button takes full width */
+  display: inline-block; /*  Proper button sizing */
+}
+
+.contact-btn:hover {
+  background: var(--cyan);
+  color: black;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .nav {
+    padding: 18px 20px;
+    gap: 1rem; /*  Add gap between elements */
+  }
+
+  .logo {
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .contact-btn {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+  }
+}
+
+/* TABLET */
+@media (max-width: 1024px) {
+  .nav {
+    padding: 20px 30px;
+  }
+
+  .nav-links a {
+    margin: 0 12px;
+  }
+
+  .contact-btn {
+    padding: 9px 18px;
+    font-size: 0.95rem;
+  }
+}

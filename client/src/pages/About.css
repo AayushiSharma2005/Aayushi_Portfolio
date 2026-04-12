@@ -1,0 +1,180 @@
+/* ABOUT SECTION */
+.about-section {
+  padding: 6rem 2rem;
+  background: linear-gradient(135deg, #111111, #0a212d); /* dark charcoal + teal */
+  color: #ccc;
+}
+
+/* CONTAINER */
+.about-container {
+  max-width: 1000px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* TITLE */
+.about-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 1.5rem;
+}
+
+/* BIO TEXT */
+.about-bio {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: #ccc;
+  margin-bottom: 2rem;
+}
+
+.highlight {
+  color: #00fff0; /* soft cyan */
+  font-weight: 600;
+}
+
+/* STATS GRID */
+.stats-grid {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.stat-card {
+  flex: 1;
+  min-width: 120px;
+  background: var(--secondary, #1b1b1b);
+  padding: 1.5rem 1rem;
+  text-align: center;
+  border-radius: 12px;
+  border: 1px solid var(--border, #333);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.08);
+  transition: 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.2);
+}
+
+.stat-card h2 {
+  font-size: 2rem;
+  color: #00fff0; /* cyan */
+  font-weight: 700;
+}
+
+.stat-card p {
+  color: #ccc;
+  margin-top: 5px;
+}
+
+/* QUOTE BOX */
+.about-quote {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: rgba(0, 255, 240, 0.05);
+  padding: 1rem 1.2rem;
+  border-radius: 12px;
+  position: relative;
+}
+
+.quote-bar {
+  width: 4px;
+  background: #00fff0; /* cyan */
+  border-radius: 2px;
+  box-shadow: 0 0 15px #00fff0;
+}
+
+.quote-text {
+  flex: 1;
+  font-size: 1rem;
+  color: #ddd;
+  font-style: italic;
+}
+
+.quote-icon {
+  font-size: 1.2rem;
+  color: #00fff0;
+  align-self: center;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .about-container {
+    text-align: center;
+  }
+
+  .stats-grid {
+    justify-content: center;
+  }
+
+  .about-quote {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .quote-bar {
+    width: 60%;
+    height: 4px;
+  }
+}
+.contact-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.pill {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #1a1a1a;
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.pill:hover {
+  background: var(--accent);
+  color: black;
+  box-shadow: 0 0 10px var(--accent);
+}
+
+.pill.address {
+  cursor: default;
+}
+
+.quote-box {
+  display: flex;
+  align-items: center;
+  margin-top: 2rem;
+  gap: 1rem;
+}
+
+.quote-bar {
+  width: 4px;
+  height: 50px;
+  background: var(--accent);
+  border-radius: 2px;
+  box-shadow: 0 0 10px var(--accent);
+}
+
+.quote-text {
+  color: #aaa;
+  font-size: 1rem;
+}
+
+.quote-icon {
+  color: var(--accent);
+  font-size: 1.2rem;
+}

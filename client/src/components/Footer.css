@@ -1,0 +1,135 @@
+.footer-section {
+  background: transparent;
+  padding: 0;
+  color: var(--text);
+  position: relative;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  text-align: left;
+}
+
+.footer-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: white;
+  margin: 0;
+}
+
+.footer-title .highlight {
+  color: var(--cyan);
+  font-style: italic;
+}
+
+.footer-subtitle {
+  font-size: 0.95rem;
+  color: var(--text);
+  margin: 0;
+  line-height: 1.6;
+  max-width: 400px;
+}
+
+.footer-contact-pills {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: rgba(0, 255, 255, 0.1);
+  color: var(--cyan);
+  padding: 0.7rem 1.2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  transition: all 0.3s ease;
+  width: fit-content;
+  font-size: 0.9rem;
+}
+
+.pill:hover {
+  background: var(--cyan);
+  color: black;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+  transform: translateX(5px);
+}
+
+.footer-social {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 8px;
+  background: rgba(0, 255, 255, 0.1);
+  color: var(--cyan);
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  border: 1px solid rgba(0, 255, 255, 0.3);
+}
+
+.social-btn:hover {
+  background: var(--cyan);
+  color: black;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+}
+
+.social-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 1.2rem;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #6b00ff, #8f2eff);
+  color: white;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 1px solid #8f2eff;
+  letter-spacing: 0.5px;
+}
+
+.social-pill:hover {
+  background: linear-gradient(135deg, #8f2eff, #b000ff);
+  box-shadow: 0 0 15px rgba(139, 0, 255, 0.5);
+}
+
+.footer-copy {
+  font-size: 0.8rem;
+  color: #666;
+  margin: 0;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 768px) {
+  .footer-title {
+    font-size: 1.8rem;
+  }
+
+  .footer-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .footer-social {
+    justify-content: flex-start;
+  }
+}
