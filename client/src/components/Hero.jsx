@@ -3,6 +3,10 @@ import "./Hero.css";
 import aayushiPic from "../assets/aayushi_pic.png";
 
 export default function Hero({ onStart }) {
+
+  // ✅ FIX: backend URL from environment
+  const API = import.meta.env.VITE_API_URL;
+
   return (
     <section className="hero-section">
       <div className="hero-container">
@@ -40,13 +44,14 @@ export default function Hero({ onStart }) {
 
           {/* BUTTONS */}
           <div className="hero-buttons">
+
             <button className="btn-primary" onClick={onStart}>
               Let’s get started →
             </button>
 
             {/* VIEW RESUME */}
             <a
-              href="http://localhost:5000/resume/view"
+              href={`${API}/resume/resume.pdf`}
               target="_blank"
               rel="noreferrer"
               className="btn-secondary"
@@ -56,13 +61,14 @@ export default function Hero({ onStart }) {
 
             {/* DOWNLOAD RESUME */}
             <a
-              href="http://localhost:5000/resume/download"
+              href={`${API}/resume/resume.pdf`}
               target="_blank"
               rel="noreferrer"
               className="btn-secondary"
             >
               Download Resume
             </a>
+
           </div>
         </motion.div>
 

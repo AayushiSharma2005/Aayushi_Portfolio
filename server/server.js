@@ -11,15 +11,12 @@ dotenv.config();
 
 const app = express();
 
-// ---------------- FIX FOR __dirname (IMPORTANT FOR DEPLOYMENT) ----------------
+// ---------------- FIX __dirname ----------------
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // ---------------- MIDDLEWARE ----------------
-app.use(cors({
-  origin: "*"
-}));
-
+app.use(cors({ origin: "*" }));
 app.use(express.json());
 
 // ---------------- MONGODB ----------------
@@ -28,35 +25,25 @@ mongoose
   .then(() => console.log("MongoDB Connected Successfully"))
   .catch((err) => console.error("MongoDB Error:", err.message));
 
-// ---------------- ROUTES ----------------
+// ---------------- CONTACT ROUTES ----------------
 app.use("/contact", contactRoutes);
 
-// ---------------- RESUME VIEW ----------------
-app.get("/resume/view", (req, res) => {
-  const filePath = path.join(__dirname, "uploads", "Aayushi_Sharma_Resume.pdf");
+// =====================================================
+// 📄 RESUME STATIC FILE FIX (PRODUCTION SAFE)
+// =====================================================
 
-  res.setHeader("Content-Type", "application/pdf");
-  res.sendFile(filePath);
-});
+// This serves files from server/public folder
+app.use("/resume", express.static(path.join(__dirname, "public")));
 
-// ---------------- RESUME DOWNLOAD ----------------
-app.get("/resume/download", (req, res) => {
-  const filePath = path.join(__dirname, "uploads", "Aayushi_Sharma_Resume.pdf");
+// Example URL:
+// https://your-backend.onrender.com/resume/resume.pdf
 
-  res.download(filePath, "Aayushi_Resume.pdf", (err) => {
-    if (err) {
-      console.log("Download error:", err);
-      res.status(404).send("Resume not found");
-    }
-  });
-});
-
-// ---------------- ROOT ----------------
+// ---------------- ROOT ROUTE ----------------
 app.get("/", (req, res) => {
   res.send("Backend running 🚀");
 });
 
-// ---------------- SERVER ----------------
+// ---------------- START SERVER ----------------
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
