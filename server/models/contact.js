@@ -6,4 +6,4 @@ const ContactSchema = new mongoose.Schema({
   message: String,
 }, { timestamps: true });
 
-export default mongoose.model("Contacts", ContactSchema);
+export default mongoose.model("Contact", ContactSchema);
