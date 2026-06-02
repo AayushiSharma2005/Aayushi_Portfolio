@@ -77,6 +77,7 @@ const getFaviconUrl = (domain) => {
 
 export default function Certificates() {
   const [activeCategory, setActiveCategory] = useState("all");
+  const [visibleCount, setVisibleCount] = useState(3);
 
   // Get unique categories
   const categories = ["all", ...new Set(certificatesData.map((cert) => cert.category))];
@@ -139,7 +140,10 @@ export default function Certificates() {
             <button
               key={category}
               className={`filter-btn ${activeCategory === category ? "active" : ""}`}
-              onClick={() => setActiveCategory(category)}
+              onClick={() => {
+                setActiveCategory(category);
+                setVisibleCount(3); // Reset on category change
+              }}
             >
               {category.charAt(0).toUpperCase() + category.slice(1)}
             </button>
@@ -150,13 +154,13 @@ export default function Certificates() {
         <AnimatePresence mode="wait">
           <motion.div
             className="certificates-grid"
-            key={activeCategory}
+            key={`${activeCategory}-${visibleCount}`}
             variants={containerVariants}
             initial="hidden"
             animate="visible"
             exit="hidden"
           >
-            {filteredCerts.map((cert) => (
+            {filteredCerts.slice(0, visibleCount).map((cert) => (
               <motion.div key={cert.id} className="cert-card" variants={itemVariants}>
                 {/* Card Header */}
                 <div className="cert-header">
@@ -195,6 +199,19 @@ export default function Certificates() {
             ))}
           </motion.div>
         </AnimatePresence>
+
+        {/* SHOW MORE BUTTON */}
+        {visibleCount < filteredCerts.length && (
+          <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+            <button 
+              className="btn-secondary" 
+              onClick={() => setVisibleCount((prev) => prev + 3)}
+              style={{ padding: '0.8rem 2.5rem' }}
+            >
+              Show More
+            </button>
+          </div>
+        )}
 
         {/* EMPTY STATE */}
         {filteredCerts.length === 0 && (

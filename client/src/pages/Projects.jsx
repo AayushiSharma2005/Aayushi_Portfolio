@@ -67,6 +67,18 @@ const itemVariants = {
 };
 
 const Projects = () => {
+  const [filter, setFilter] = React.useState('All');
+  const [visibleCount, setVisibleCount] = React.useState(3);
+
+  const categories = ['All', 'Python', 'Web', 'C', 'AI'];
+
+  const filteredProjects = projects.filter((project) => {
+    if (filter === 'All') return true;
+    if (filter === 'Web') return project.tech.includes('Transformers') || project.tech.includes('API') || project.tech.includes('OpenCV');
+    if (filter === 'AI') return project.tech.includes('Transformers') || project.tech.includes('AI') || project.tech.includes('CLIP');
+    return project.tech.includes(filter);
+  });
+
   return (
     <section id="projects" className="projects-section">
       <div className="projects-container">
@@ -79,11 +91,33 @@ const Projects = () => {
           viewport={{ once: true }}
         >
           <h2 className="projects-title">
-            Featured <span className="highlight">Explorations</span>
+            Featured <span className="highlight text-gradient">Explorations</span>
           </h2>
           <p className="projects-subtitle">
             Projects and ideas I'm passionate about
           </p>
+        </motion.div>
+
+        {/* FILTER BUTTONS */}
+        <motion.div 
+          className="projects-filter"
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          viewport={{ once: true }}
+        >
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              className={`filter-btn ${filter === cat ? 'active' : ''}`}
+              onClick={() => {
+                setFilter(cat);
+                setVisibleCount(3); // Reset count on filter change
+              }}
+            >
+              {cat}
+            </button>
+          ))}
         </motion.div>
 
         {/* PROJECTS GRID */}
@@ -93,13 +127,14 @@ const Projects = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
+          key={`${filter}-${visibleCount}`} // To re-trigger animations on filter/count change
         >
-          {projects.map((project) => (
+          {filteredProjects.slice(0, visibleCount).map((project) => (
             <motion.div
               key={project.id}
-              className={`project-card color-${project.color}`}
+              className={`project-card glass-card color-${project.color}`}
               variants={itemVariants}
-              whileHover={{ y: -8, transition: { duration: 0.3 } }}
+              whileHover={{ y: -10, scale: 1.02 }}
             >
               {/* TOP BAR WITH ICON AND BADGE */}
               <div className="project-top">
@@ -152,6 +187,41 @@ const Projects = () => {
             </motion.div>
           ))}
         </motion.div>
+
+        {/* SHOW MORE BUTTON */}
+        {visibleCount < filteredProjects.length && (
+          <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+            <button 
+              className="btn-secondary" 
+              onClick={() => setVisibleCount((prev) => prev + 3)}
+              style={{ padding: '0.8rem 2.5rem' }}
+            >
+              Show More
+            </button>
+          </div>
+        )}
+
+        {/* EXPLORE MORE GITHUB */}
+        {visibleCount >= filteredProjects.length && (
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            style={{ textAlign: 'center', marginTop: '3rem' }}
+          >
+            <p className="projects-subtitle" style={{ fontSize: '1.1rem' }}>
+              Want to see more? Explore all my repositories on{' '}
+              <a 
+                href="https://github.com/AayushiSharma2005" 
+                target="_blank" 
+                rel="noreferrer"
+                style={{ color: 'var(--theme-orange)', fontWeight: 'bold', textDecoration: 'none', borderBottom: '2px solid var(--theme-orange)' }}
+              >
+                GitHub
+              </a>
+            </p>
+          </motion.div>
+        )}
       </div>
     </section>
   );

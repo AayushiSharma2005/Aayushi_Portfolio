@@ -4,6 +4,17 @@ import "./Experience.css";
 const experienceData = [
   {
     id: 1,
+    role: "B.Tech in Computer Science",
+    company: "JK Lakshmipat University",
+    location: "JAIPUR",
+    duration: "2023 - 2027",
+    description: [
+      "Currently pursuing B.Tech with focus on Machine Learning and AI.",
+      "Maintained a strong CGPA and active participation in technical clubs.",
+    ],
+  },
+  {
+    id: 2,
     role: "Research Intern",
     company: "The LNM Institute of Information Technology",
     location: "HYBRID • JAIPUR",
@@ -15,7 +26,7 @@ const experienceData = [
     ],
   },
   {
-    id: 2,
+    id: 3,
     role: "AI Intern",
     company: "Infosys Springboard",
     location: "REMOTE • BENGALURU",
@@ -94,8 +105,8 @@ export default function Experience() {
               </div>
 
               {/* Right */}
-              <div className="exp-right">
-                <h3 className="exp-role">{exp.role}</h3>
+              <div className="exp-right glass-card">
+                <h3 className="exp-role text-gradient">{exp.role}</h3>
                 <p className="exp-company">{exp.company}</p>
 
                 <ul className="exp-description">

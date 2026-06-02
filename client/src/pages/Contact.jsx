@@ -18,7 +18,7 @@ export default function Contact() {
     try {
       setLoading(true);
 
-      const API = import.meta.env.VITE_API_URL;
+      const API = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
       const res = await fetch(`${API}/contact`, {
         method: "POST",
@@ -104,7 +104,7 @@ export default function Contact() {
           {/* BUTTON */}
           <motion.button
             type="submit"
-            className="btn-send"
+            className="submit-btn"
             disabled={loading}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

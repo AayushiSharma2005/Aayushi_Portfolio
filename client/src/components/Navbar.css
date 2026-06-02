@@ -1,32 +1,62 @@
 .nav {
   position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
-  padding: 22px 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(12px);
-  z-index: 100;
+  padding: 1rem 2rem;
+  z-index: 1000;
+  background: var(--bg);
   border-bottom: 1px solid var(--border);
-  box-sizing: border-box; /*  Prevents overflow */
+  box-shadow: 0 4px 0px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
 }
 
 .logo {
-  color: var(--cyan);
-  font-size: 30px;
-  font-weight: 700;
-  flex-shrink: 0; /* Prevent logo from shrinking */
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -1px;
 }
 
 /* NAV LINKS */
 .nav-links {
   display: flex;
+  gap: 2rem;
   align-items: center;
-  flex: 1;
-  justify-content: center;
-  margin: 0 2rem;
+}
+
+.nav-item {
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+  position: relative;
+  z-index: 2;
+  padding: 0.5rem 1rem;
+}
+
+.nav-item:hover {
+  color: var(--text);
+}
+
+.nav-item.active {
+  color: #111111 !important;
+  font-weight: 700;
+}
+
+[data-theme="light"] .nav-item.active {
+  color: #111111 !important; /* Force dark text since pill is light green/yellow in light mode too */
+}
+
+.active-pill {
+  position: absolute;
+  inset: 0;
+  background: var(--theme-green);
+  border-radius: 4px;
+  z-index: 0; /* Keep behind text */
 }
 
 .nav-links a {
@@ -72,23 +102,46 @@
   padding: 10px 22px;
   border-radius: 25px;
   text-decoration: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
   font-weight: 600;
-  transition: 0.3s;
-  border: none;
-  cursor: pointer;
-  white-space: nowrap; /* Prevent button text from wrapping */
-  flex-shrink: 0; /* Prevent button from shrinking */
-  min-width: fit-content; /* Ensure button takes full width */
-  display: inline-block; /*  Proper button sizing */
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
 }
 
-.contact-btn:hover {
+.contact-btn:hover,
+.contact-btn.active {
   background: var(--cyan);
-  color: black;
-  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+  color: #000;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
 }
 
-/* MOBILE */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.theme-toggle {
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease;
+}
+
+.theme-toggle:hover {
+  color: var(--cyan);
+}
+
+/* =========================
+   RESPONSIVE NAVBAR (FIXED)
+========================= */
 @media (max-width: 768px) {
   .nav {
     padding: 18px 20px;

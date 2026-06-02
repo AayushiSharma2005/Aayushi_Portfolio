@@ -1,14 +1,49 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
 
 :root {
-  --bg: #0a0a0a;
-  --secondary: #111111;
-  --card: #1a1a1a;
-  --border: #2a2a2a;
-  --text: #e0e0e0;
-  --text-secondary: #a0a0a0;
-  --cyan: #00ffff;
-  --accent: #ff006e;
+  /* DARK MODE (Earthy Matrix Box Theme) */
+  --bg: #111111; /* Black */
+  --secondary: #1a1512; /* Dark Brown/Black */
+  --card: #171717; /* Very Dark Gray/Black */
+  --border: #4a3b32; /* Brown */
+  --text: #ffffff; /* White */
+  --text-secondary: #8ec07c; /* Light Green */
+  --theme-green: #b8bb26; /* Green */
+  --theme-orange: #fe8019; /* Orange */
+  
+  /* Overriding old variables for compatibility while migrating */
+  --cyan: var(--theme-green); 
+  --accent: var(--theme-orange); 
+  --glow-cyan: rgba(184, 187, 38, 0.1);
+  --glow-accent: rgba(254, 128, 25, 0.1);
+}
+
+[data-theme="light"] {
+  /* LIGHT MODE - (Kept consistent with earthy tones) */
+  --bg: #f9f5d7; /* Very light earthy */
+  --secondary: #f2e5bc;
+  --card: #ffffff;
+  --border: #d5c4a1;
+  --text: #111111;
+  --text-secondary: #504945;
+  --cyan: #98971a; 
+  --accent: #d65d0e; 
+  --glow-cyan: rgba(152, 151, 26, 0.15);
+  --glow-accent: rgba(214, 93, 14, 0.15);
+}
+
+/* UTILITY CLASSES - Matrix Box Style */
+.glass-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 4px; /* Rigid, boxy */
+  box-shadow: 4px 4px 0px rgba(0,0,0,0.5); /* Retro drop shadow */
+  transition: all 0.2s ease;
+}
+
+.text-gradient {
+  color: var(--theme-orange);
+  /* Removed gradient for a flatter, more retro/editor look */
 }
 
 /* RESET */
@@ -21,39 +56,51 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  scroll-padding-top: 100px; /* Prevents navbar overlapping content on scroll */
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
-  background: var(--bg);
+  font-family: 'Space Mono', monospace; /* Monospaced for the editor feel */
+  background-color: var(--bg);
+  /* Matrix Grid Pattern */
+  background-image: 
+    linear-gradient(var(--secondary) 1px, transparent 1px),
+    linear-gradient(90deg, var(--secondary) 1px, transparent 1px);
+  background-size: 30px 30px;
   color: var(--text);
   line-height: 1.6;
   overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 /* =========================
-   RESPONSIVE TYPOGRAPHY (FIXED PROPERLY)
+   RESPONSIVE TYPOGRAPHY (Adjusted smaller)
 ========================= */
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Space Mono', monospace;
+  text-transform: uppercase;
+}
+
 h1 {
-  font-size: clamp(1.8rem, 4vw, 3.2rem);
+  font-size: clamp(2rem, 3.5vw, 3rem);
   font-weight: 800;
   letter-spacing: -0.02em;
 }
 
 h2 {
-  font-size: clamp(1.4rem, 3vw, 2.4rem);
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
   font-weight: 700;
   letter-spacing: -0.01em;
 }
 
 h3 {
-  font-size: clamp(1.1rem, 2vw, 1.4rem);
-  font-weight: 700;
+  font-size: clamp(1.1rem, 1.8vw, 1.3rem);
+  font-weight: 600;
 }
 
 p {
-  font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+  font-size: clamp(0.9rem, 1vw, 1rem);
   line-height: 1.7;
   font-weight: 400;
 }

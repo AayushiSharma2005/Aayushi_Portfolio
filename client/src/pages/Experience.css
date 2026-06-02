@@ -1,6 +1,5 @@
 .experience-section {
   padding: 5rem 2rem;
-  background: var(--bg);
 }
 
 .experience-container {
@@ -14,9 +13,9 @@
 }
 
 .section-title {
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   font-weight: 800;
-  color: white;
+  color: var(--text);
   margin-bottom: 0.5rem;
 }
 
@@ -66,43 +65,51 @@
 .exp-dot {
   width: 16px;
   height: 16px;
-  background: var(--cyan);
-  border: 3px solid var(--bg);
-  border-radius: 50%;
+  background: var(--theme-green);
+  border: 2px solid var(--theme-orange);
+  border-radius: 0; /* Square retro dot */
   margin-top: 4px;
-  box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+  box-shadow: 2px 2px 0px rgba(0,0,0,0.5);
 }
 
 .exp-line {
-  width: 2px;
-  height: 200px;
-  background: linear-gradient(180deg, var(--cyan), transparent);
+  width: 4px;
+  height: 100%;
+  min-height: 180px;
+  background: var(--theme-green);
   margin-top: 10px;
+  box-shadow: 2px 0px 0px rgba(0,0,0,0.5);
 }
 
 /* RIGHT SIDE - DETAILS */
 .exp-right {
-  padding: 1.5rem;
-  border-left: 2px solid var(--border);
-  transition: 0.3s ease;
+  padding: 2rem;
+  border: 1px solid var(--border);
+  background: var(--card);
+  transition: 0.2s ease;
+  margin-bottom: 2rem; 
+  border-radius: 4px;
+  box-shadow: 4px 4px 0px rgba(0,0,0,0.5);
 }
 
 .experience-item:hover .exp-right {
-  border-left-color: var(--cyan);
-  padding-left: 2rem;
+  border-color: var(--theme-orange);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px rgba(0,0,0,0.5);
 }
 
 .exp-role {
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: white;
+  font-size: 1.4rem;
+  font-weight: 800;
   margin-bottom: 0.3rem;
+  color: var(--theme-green);
 }
 
 .exp-company {
-  font-size: 0.95rem;
-  color: var(--text);
-  margin-bottom: 1.2rem;
+  font-size: 1rem;
+  color: var(--theme-orange);
+  margin-bottom: 1.5rem;
+  font-weight: 500;
 }
 
 /* DESCRIPTION POINTS */
@@ -238,4 +245,14 @@
   border-radius: 20px;
   border: 1px solid rgba(0, 255, 255, 0.3);
   font-weight: 600;
+}
+
+.exp-date {
+  background: var(--card);
+  color: var(--text);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: 1px solid var(--border);
 }

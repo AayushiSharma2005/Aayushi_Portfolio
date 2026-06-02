@@ -14,6 +14,13 @@ import ContactFooter from "./components/ContactFooter";
 
 export default function App() {
   const [showSections, setShowSections] = useState(false);
+  const [theme, setTheme] = useState("dark");
+
+  const toggleTheme = () => {
+    const newTheme = theme === "dark" ? "light" : "dark";
+    setTheme(newTheme);
+    document.documentElement.setAttribute("data-theme", newTheme);
+  };
 
   const handleStart = () => {
     setShowSections(true);
@@ -28,7 +35,7 @@ export default function App() {
 
       {showSections && (
         <>
-          <Navbar />
+          <Navbar theme={theme} toggleTheme={toggleTheme} />
 
           {/* Page Sections */}
           <About />             {/* id="about" */}

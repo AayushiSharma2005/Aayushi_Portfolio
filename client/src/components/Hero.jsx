@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { Typewriter } from "react-simple-typewriter";
 import "./Hero.css";
 import aayushiPic from "../assets/aayushi_pic.png";
 
 export default function Hero({ onStart }) {
   const [showModal, setShowModal] = useState(false);
+
+  // Use VITE_API_URL if deployed, otherwise fallback to local server
+  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
   return (
     <section className="hero-section">
@@ -17,9 +21,19 @@ export default function Hero({ onStart }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
         >
-          <h1 className="hero-name">Aayushi Sharma</h1>
+          <h1 className="hero-name" style={{ color: 'var(--theme-orange)' }}>Aayushi Sharma</h1>
 
-          <p className="hero-typewriter">B.Tech Undergrad • Tech Explorer</p>
+          <p className="hero-typewriter">
+            <Typewriter
+              words={["B.Tech Undergrad", "Tech Explorer", "Machine Learning Enthusiast", "Web Developer"]}
+              loop={0}
+              cursor
+              cursorStyle="_"
+              typeSpeed={70}
+              deleteSpeed={50}
+              delaySpeed={1000}
+            />
+          </p>
 
           <p className="hero-tagline">
             I am an Engineering Student exploring
@@ -86,11 +100,11 @@ export default function Hero({ onStart }) {
             <h3>Select Format</h3>
 
             <div className="modal-buttons">
-              <a className="modal-btn" href="/resume.pdf" download>
+              <a className="modal-btn" href="/resume.pdf" download="Aayushi_Sharma_Resume.pdf">
                 PDF
               </a>
 
-              <a className="modal-btn" href="/resume.docx" download>
+              <a className="modal-btn" href="/resume.docx" download="Aayushi_Sharma_Resume.docx">
                 DOCX
               </a>
             </div>
